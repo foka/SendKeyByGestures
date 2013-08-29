@@ -1,0 +1,8 @@
+bin
+Bin
+obj
+*ReSharper*
+*.user
+*.bak
+*.csproj.user
+*.suo
