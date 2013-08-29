@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 
 namespace SendKeyByGesture
 {
@@ -12,5 +7,10 @@ namespace SendKeyByGesture
 	/// </summary>
 	public partial class App : Application
 	{
+		private void App_OnStartup(object sender, StartupEventArgs e)
+		{
+			var window = new MainWindow(new MainWindowViewModel());
+			window.Show();
+		}
 	}
 }
