@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using Fizbin.Kinect.Gestures;
 using Microsoft.Kinect;
@@ -55,7 +56,7 @@ namespace SendKeyByGesture
 
 		private void OnGestureRecognized(object sender, GestureEventArgs e)
 		{
-			Debug.WriteLine(e.GestureName + " " + e.TrackingId);
+			gestureLogTextBox.Text =  DateTime.Now.ToString("[HH:mm:ss.fff]  ") + e.GestureName + "\n" + gestureLogTextBox.Text;
 		}
 
 		private void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
