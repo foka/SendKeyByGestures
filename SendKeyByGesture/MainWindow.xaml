@@ -16,6 +16,7 @@
 	
 	<Window.Resources>
 		<WpfViewers:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+		<SendKeyByGesture:KinectSensorConnectedConverter x:Key="KinectSensorConnectedConverter" />
 	</Window.Resources>
 
 	<Grid>
@@ -49,18 +50,26 @@
 			<Grid Background="#EEEEEE">
 				<TextBlock Text="Kinect settings" FontWeight="Bold" VerticalAlignment="Center" Padding="3" HorizontalAlignment="Stretch"/>
 			</Grid>
-			
-			<Grid>
+
+			<Grid IsEnabled="{Binding KinectSensorManager.KinectSensorStatus, Converter={StaticResource KinectSensorConnectedConverter}}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
 
 				<TextBlock Text="Tilt" Margin="3" VerticalAlignment="Center"/>
 				<Slider Orientation="Horizontal" Grid.Column="1" Margin="3"
 						Minimum="-27" Maximum="27" Value="{Binding KinectSensorManager.KinectSensor.ElevationAngle, Mode=TwoWay}"
-						ToolTip="{Binding KinectSensorManager.KinectSensor.ElevationAngle}"/>
+						ToolTip="{Binding KinectSensorManager.KinectSensor.ElevationAngle}" />
 
+				<TextBlock Text="Seated" Margin="3" VerticalAlignment="Center" Grid.Row="1"/>
+<!--				<CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"-->
+<!--						  IsChecked="{Binding KinectSensorManager.SkeletonTrackingMode, Converter={StaticResource SkeletonTrackingModeConverter}}"/>-->
+				
 			</Grid>
 			
 			<Grid Background="#EEEEEE" Margin="0 5 0 0">

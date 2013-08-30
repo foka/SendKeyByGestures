@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="GesturesRegistry.cs" />
     <Compile Include="GestureWithKeyViewModel.cs" />
+    <Compile Include="KinectSensorConnectedConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

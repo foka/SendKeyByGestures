@@ -79,7 +79,7 @@ namespace SendKeyByGesture
 				JitterRadius = 0.05f,
 				MaxDeviationRadius = 0.05f,
 			};
-			//			KinectSensorManager.SkeletonTrackingMode = SkeletonTrackingMode.Seated;
+			KinectSensorManager.SkeletonTrackingMode = SkeletonTrackingMode.Seated;
 			KinectSensorManager.SkeletonEnableTrackingInNearMode = true;
 			KinectSensorManager.DepthStreamEnabled = true;
 			KinectSensorManager.ColorStreamEnabled = true;
@@ -90,8 +90,6 @@ namespace SendKeyByGesture
 			{
 				gestureController.AddGesture(g.Key, g.Value);
 			}
-
-			// http://msdn.microsoft.com/en-us/library/system.windows.forms.sendkeys.aspx
 		}
 
 		private void StopKinect(KinectSensor sensor)
