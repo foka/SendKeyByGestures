@@ -32,7 +32,7 @@ namespace SendKeyByGesture
 			}
 		}
 
-		public IEnumerable<GestureWithKeyViewModel> GestureWithKeyCollection
+		public GestureWithKeyViewModel[] GestureWithKeyCollection
 		{
 			get { return gestureWithKeyCollection; }
 			private set
@@ -142,7 +142,7 @@ namespace SendKeyByGesture
 		private string log;
 		private Skeleton[] skeletons = new Skeleton[0];
 		private GestureController gestureController;
-		private IEnumerable<GestureWithKeyViewModel> gestureWithKeyCollection;
+		private GestureWithKeyViewModel[] gestureWithKeyCollection;
 
 	}
 }

@@ -14,9 +14,9 @@ namespace SendKeyByGesture
 			CreateGestures();
 		}
 
-		public static IEnumerable<GestureWithKeyViewModel> CreateGesturesWithKeys()
+		public static GestureWithKeyViewModel[] CreateGesturesWithKeys()
 		{
-			return Gestures.Select(g => new GestureWithKeyViewModel { GestureName = g.Key });
+			return Gestures.Select(g => new GestureWithKeyViewModel { GestureName = g.Key }).ToArray();
 		}
 
 		private static void CreateGestures()
