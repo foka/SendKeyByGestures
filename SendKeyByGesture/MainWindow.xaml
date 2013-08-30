@@ -58,6 +58,7 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 
 				<TextBlock Text="Tilt" Margin="3" VerticalAlignment="Center"/>
@@ -71,8 +72,12 @@
 				<CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
 						  IsChecked="{Binding KinectSensorManager.SkeletonTrackingMode, Converter={StaticResource SkeletonTrackingModeIsSeatedConverter}}"/>
 
-				<TextBlock Text="Camera" Margin="3" VerticalAlignment="Center" Grid.Row="2"/>
+				<TextBlock Text="Near mode" Margin="3" VerticalAlignment="Center" Grid.Row="2"/>
 				<CheckBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+						  IsChecked="{Binding KinectSensorManager.SkeletonEnableTrackingInNearMode}"/>
+
+				<TextBlock Text="Camera" Margin="3" VerticalAlignment="Center" Grid.Row="3"/>
+				<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
 						  x:Name="cameraCheckBox" Checked="CameraCheckBox_OnChecked" Unchecked="CameraCheckBox_OnUnchecked" />
 			</Grid>
 			
