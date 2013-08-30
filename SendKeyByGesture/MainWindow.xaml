@@ -13,6 +13,10 @@
 	<d:Window.DataContext>
 		<SendKeyByGesture:MainWindowViewModel />
 	</d:Window.DataContext>
+	
+	<Window.Resources>
+		<WpfViewers:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+	</Window.Resources>
 
 	<Grid>
 		<Grid.RowDefinitions>
@@ -37,24 +41,42 @@
 
 
 		<GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+		
 		<StackPanel Orientation="Vertical" Grid.Column="2" Grid.RowSpan="3">
 <!--			ElevationAngle-->
 <!--			Sitting-->
 <!--			Log exception on textBox-->
 			<Grid Background="#EEEEEE">
+				<TextBlock Text="Kinect settings" FontWeight="Bold" VerticalAlignment="Center" Padding="3" HorizontalAlignment="Stretch"/>
+			</Grid>
+			
+			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
-				
-				<TextBlock Text="Keys definition" FontWeight="Bold" VerticalAlignment="Center" Padding="3" HorizontalAlignment="Stretch"/>
+
+				<TextBlock Text="Tilt" Margin="3" VerticalAlignment="Center"/>
+				<Slider Orientation="Horizontal" Grid.Column="1" Margin="3"
+						Minimum="-27" Maximum="27" Value="{Binding KinectSensorManager.KinectSensor.ElevationAngle, Mode=TwoWay}"
+						ToolTip="{Binding KinectSensorManager.KinectSensor.ElevationAngle}"/>
+
+			</Grid>
+			
+			<Grid Background="#EEEEEE" Margin="0 5 0 0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+
+				<TextBlock Text="Send-key definition" FontWeight="Bold" VerticalAlignment="Center" Padding="3" HorizontalAlignment="Stretch"/>
 				<TextBlock Grid.Column="1" VerticalAlignment="Center" Padding="3" TextAlignment="Right">
 					<Hyperlink Click="Hyperlink_OnClick" ToolTip="http://msdn.microsoft.com/en-us/library/system.windows.forms.sendkeys.aspx">?</Hyperlink>
 				</TextBlock>
 			</Grid>
-				
+
 			<DataGrid ItemsSource="{Binding GestureWithKeyCollection}" AutoGenerateColumns="False" RowHeaderWidth="0" RowHeight="23"
-					  HorizontalGridLinesBrush="#EEEEEE" VerticalGridLinesBrush="#CCCCCC">
+					  HorizontalGridLinesBrush="#EEEEEE" VerticalGridLinesBrush="#CCCCCC" VerticalScrollBarVisibility="Auto	">
 				<DataGrid.Columns>
 					<DataGridTemplateColumn IsReadOnly="True" SortMemberPath="GestureName" Width="Auto">
 						<DataGridTemplateColumn.HeaderTemplate>
@@ -96,5 +118,4 @@
 			</DataGrid>
 		</StackPanel>
 	</Grid>
-
 </Window>
