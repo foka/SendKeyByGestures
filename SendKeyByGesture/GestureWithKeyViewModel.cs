@@ -5,7 +5,7 @@ namespace SendKeyByGesture
 	public class GestureWithKeyViewModel : INotifyPropertyChanged
 	{
 		public static readonly string GesstureProperty = "Gessture";
-		public static readonly string KeyProperty = "Key";
+		public static readonly string KeyProperty = "Keys";
 
 		public string GestureName
 		{
@@ -18,13 +18,13 @@ namespace SendKeyByGesture
 			}
 		}
 
-		public string Key
+		public string Keys
 		{
-			get { return key; }
+			get { return keys; }
 			set
 			{
-				if (value == key) return;
-				key = value;
+				if (value == keys) return;
+				keys = value;
 				RaisePropertyChanged(KeyProperty);
 			}
 		}
@@ -38,6 +38,6 @@ namespace SendKeyByGesture
 		}
 
 		private string gestureName;
-		private string key;
+		private string keys;
 	}
 }

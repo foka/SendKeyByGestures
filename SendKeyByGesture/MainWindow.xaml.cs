@@ -48,5 +48,17 @@ namespace SendKeyByGesture
 			if (tiltSlider.IsFocused && Mouse.LeftButton != MouseButtonState.Pressed)
 				viewModel.KinectSensorManager.ElevationAngle = (int)Math.Round(tiltSlider.Value);
 		}
+
+		private void CameraCheckBox_OnChecked(object sender, RoutedEventArgs e)
+		{
+			colorViewer.Visibility = Visibility.Visible;
+			depthViewer.Visibility = Visibility.Hidden;
+		}
+
+		private void CameraCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
+		{
+			colorViewer.Visibility = Visibility.Hidden;
+			depthViewer.Visibility = Visibility.Visible;
+		}
 	}
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Reflection;
 using System.Windows.Forms;
 using Fizbin.Kinect.Gestures;
 using Microsoft.Kinect;
@@ -18,6 +20,7 @@ namespace SendKeyByGesture
 			KinectSensorManager = new KinectSensorManager();
 
 			GestureWithKeyCollection = GesturesRegistry.CreateGesturesWithKeys();
+			LoadConfig();
 			gesturesDictionary = GestureWithKeyCollection.ToDictionary(g => g.GestureName, g => g);
 		}
 
@@ -57,6 +60,35 @@ namespace SendKeyByGesture
 		{
 			if (KinectSensorChooser.Kinect != null)
 				StopKinect(KinectSensorChooser.Kinect);
+			SaveConfig();
+		}
+
+
+		private void LoadConfig()
+		{
+			var config = ConfigurationManager.OpenExeConfiguration(Assembly.GetEntryAssembly().Location);
+			foreach (var g in GestureWithKeyCollection)
+			{
+				var appSetting = config.AppSettings.Settings["Gesture_" + g.GestureName];
+				g.Keys = appSetting == null ? null : appSetting.Value;
+			}
+		}
+
+		private void SaveConfig()
+		{
+			var config = ConfigurationManager.OpenExeConfiguration(Assembly.GetEntryAssembly().Location);
+			foreach (var g in GestureWithKeyCollection)
+			{
+				var appSettingKey = "Gesture_" + g.GestureName;
+				var appSetting = config.AppSettings.Settings[appSettingKey];
+				if (appSetting == null)
+					config.AppSettings.Settings.Add(appSettingKey, g.Keys);
+				else
+				{
+					appSetting.Value = g.Keys;
+				}
+			}
+			config.Save();
 		}
 
 		private void KinectChanged(object sender, KinectChangedEventArgs e)
@@ -104,7 +136,7 @@ namespace SendKeyByGesture
 		private void OnGestureRecognized(object sender, GestureEventArgs e)
 		{
 			Log = DateTime.Now.ToString("[HH:mm:ss.fff]  ") + e.GestureName + "\n" + Log;
-			SendKeys.SendWait(gesturesDictionary[e.GestureName].Key);
+			SendKeys.SendWait(gesturesDictionary[e.GestureName].Keys);
 		}
 
 		private void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)

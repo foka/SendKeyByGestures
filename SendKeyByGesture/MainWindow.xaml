@@ -32,7 +32,8 @@
 			<ColumnDefinition Width="150"/>
 		</Grid.ColumnDefinitions>
 
-		<WpfViewers:KinectColorViewer KinectSensorManager="{Binding KinectSensorManager}"/>
+		<WpfViewers:KinectDepthViewer x:Name="depthViewer" KinectSensorManager="{Binding KinectSensorManager}" />
+		<WpfViewers:KinectColorViewer x:Name="colorViewer" KinectSensorManager="{Binding KinectSensorManager}" Visibility="Hidden"/>
 		<WpfViewers:KinectSkeletonViewer KinectSensorManager="{Binding KinectSensorManager}"/>
 
 		<GridSplitter Grid.Row="1" Height="4" HorizontalAlignment="Stretch" />
@@ -42,10 +43,8 @@
 
 		<GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 		
+		<!-- Settings right panel -->
 		<StackPanel Orientation="Vertical" Grid.Column="2" Grid.RowSpan="3">
-<!--			ElevationAngle-->
-<!--			Sitting-->
-<!--			Log exception on textBox-->
 			<Grid Background="#EEEEEE">
 				<TextBlock Text="Kinect settings" FontWeight="Bold" VerticalAlignment="Center" Padding="3" HorizontalAlignment="Stretch"/>
 			</Grid>
@@ -58,6 +57,7 @@
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 
 				<TextBlock Text="Tilt" Margin="3" VerticalAlignment="Center"/>
@@ -65,12 +65,15 @@
 						Minimum="-27" Maximum="27" Value="{Binding KinectSensorManager.KinectSensor.ElevationAngle, Mode=OneWay}"
 						ToolTip="{Binding KinectSensorManager.KinectSensor.ElevationAngle}"
 						PreviewMouseUp="tiltSlider_OnPreviewMouseUp"
-						ValueChanged="tiltSlider_OnValueChanged"
-						/>
+						ValueChanged="tiltSlider_OnValueChanged" />
 
 				<TextBlock Text="Seated" Margin="3" VerticalAlignment="Center" Grid.Row="1"/>
 				<CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-						  IsChecked="{Binding KinectSensorManager.SkeletonTrackingMode, Converter={StaticResource SkeletonTrackingModeIsSeatedConverter}}"/>				
+						  IsChecked="{Binding KinectSensorManager.SkeletonTrackingMode, Converter={StaticResource SkeletonTrackingModeIsSeatedConverter}}"/>
+
+				<TextBlock Text="Camera" Margin="3" VerticalAlignment="Center" Grid.Row="2"/>
+				<CheckBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+						  x:Name="cameraCheckBox" Checked="CameraCheckBox_OnChecked" Unchecked="CameraCheckBox_OnUnchecked" />
 			</Grid>
 			
 			<Grid Background="#EEEEEE" Margin="0 5 0 0">
@@ -79,7 +82,7 @@
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 
-				<TextBlock Text="Send-key definition" FontWeight="Bold" VerticalAlignment="Center" Padding="3" HorizontalAlignment="Stretch"/>
+				<TextBlock Text="Send keys" FontWeight="Bold" VerticalAlignment="Center" Padding="3" HorizontalAlignment="Stretch"/>
 				<TextBlock Grid.Column="1" VerticalAlignment="Center" Padding="3" TextAlignment="Right">
 					<Hyperlink Click="Hyperlink_OnClick" ToolTip="http://msdn.microsoft.com/en-us/library/system.windows.forms.sendkeys.aspx">?</Hyperlink>
 				</TextBlock>
@@ -101,20 +104,20 @@
 						</DataGridTemplateColumn.CellTemplate>
 					</DataGridTemplateColumn>
 					
-					<DataGridTemplateColumn SortMemberPath="Key" Width="*">
+					<DataGridTemplateColumn SortMemberPath="Keys" Width="*">
 						<DataGridTemplateColumn.HeaderTemplate>
 							<DataTemplate>
-								<TextBlock Text="Key" />
+								<TextBlock Text="Keys" />
 							</DataTemplate>
 						</DataGridTemplateColumn.HeaderTemplate>
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<TextBlock Text="{Binding Key}" VerticalAlignment="Center" Margin="1"/>
+								<TextBlock Text="{Binding Keys}" VerticalAlignment="Center" Margin="1"/>
 							</DataTemplate>
 						</DataGridTemplateColumn.CellTemplate>
 						<DataGridTemplateColumn.CellEditingTemplate>
 							<DataTemplate>
-								<TextBox x:Name="keyEditor" Text="{Binding Key, Mode=TwoWay}" Margin="0" Padding="0" BorderThickness="0"/>
+								<TextBox x:Name="keyEditor" Text="{Binding Keys, Mode=TwoWay}" Margin="0" Padding="0" BorderThickness="0"/>
 
 								<DataTemplate.Triggers>
 									<Trigger SourceName="keyEditor" Property="IsVisible" Value="True">
