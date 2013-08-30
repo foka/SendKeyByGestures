@@ -1,11 +1,25 @@
-﻿using Fizbin.Kinect.Gestures;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Fizbin.Kinect.Gestures;
 using Fizbin.Kinect.Gestures.Segments;
 
 namespace SendKeyByGesture
 {
-	public class GesturesRegistar
+	public static class GesturesRegistry
 	{
-		public static void RegisterGestures(GestureController gestureController)
+		public static readonly IDictionary<string, IRelativeGestureSegment[]> Gestures = new Dictionary<string, IRelativeGestureSegment[]>();
+
+		static GesturesRegistry()
+		{
+			CreateGestures();
+		}
+
+		public static IEnumerable<GestureWithKeyViewModel> CreateGesturesWithKeys()
+		{
+			return Gestures.Select(g => new GestureWithKeyViewModel { GestureName = g.Key });
+		}
+
+		private static void CreateGestures()
 		{
 			var joinedhandsSegments = new IRelativeGestureSegment[20];
 			var joinedhandsSegment = new JoinedHandsSegment1();
@@ -14,7 +28,7 @@ namespace SendKeyByGesture
 				// gesture consists of the same thing 10 times 
 				joinedhandsSegments[i] = joinedhandsSegment;
 			}
-			gestureController.AddGesture("JoinedHands", joinedhandsSegments);
+			Gestures.Add("JoinedHands", joinedhandsSegments);
 
 			var menuSegments = new IRelativeGestureSegment[20];
 			var menuSegment = new MenuSegment1();
@@ -23,19 +37,19 @@ namespace SendKeyByGesture
 				// gesture consists of the same thing 20 times 
 				menuSegments[i] = menuSegment;
 			}
-			gestureController.AddGesture("Menu", menuSegments);
+			Gestures.Add("Menu", menuSegments);
 
 			var swipeleftSegments = new IRelativeGestureSegment[3];
 			swipeleftSegments[0] = new SwipeLeftSegment1();
 			swipeleftSegments[1] = new SwipeLeftSegment2();
 			swipeleftSegments[2] = new SwipeLeftSegment3();
-			gestureController.AddGesture("SwipeLeft", swipeleftSegments);
+			Gestures.Add("SwipeLeft", swipeleftSegments);
 
 			var swiperightSegments = new IRelativeGestureSegment[3];
 			swiperightSegments[0] = new SwipeRightSegment1();
 			swiperightSegments[1] = new SwipeRightSegment2();
 			swiperightSegments[2] = new SwipeRightSegment3();
-			gestureController.AddGesture("SwipeRight", swiperightSegments);
+			Gestures.Add("SwipeRight", swiperightSegments);
 
 			var waveRightSegments = new IRelativeGestureSegment[6];
 			var waveRightSegment1 = new WaveRightSegment1();
@@ -46,7 +60,7 @@ namespace SendKeyByGesture
 			waveRightSegments[3] = waveRightSegment2;
 			waveRightSegments[4] = waveRightSegment1;
 			waveRightSegments[5] = waveRightSegment2;
-			gestureController.AddGesture("WaveRight", waveRightSegments);
+			Gestures.Add("WaveRight", waveRightSegments);
 
 			var waveLeftSegments = new IRelativeGestureSegment[6];
 			var waveLeftSegment1 = new WaveLeftSegment1();
@@ -57,31 +71,31 @@ namespace SendKeyByGesture
 			waveLeftSegments[3] = waveLeftSegment2;
 			waveLeftSegments[4] = waveLeftSegment1;
 			waveLeftSegments[5] = waveLeftSegment2;
-			gestureController.AddGesture("WaveLeft", waveLeftSegments);
+			Gestures.Add("WaveLeft", waveLeftSegments);
 
 			var zoomInSegments = new IRelativeGestureSegment[3];
 			zoomInSegments[0] = new ZoomSegment1();
 			zoomInSegments[1] = new ZoomSegment2();
 			zoomInSegments[2] = new ZoomSegment3();
-			gestureController.AddGesture("ZoomIn", zoomInSegments);
+			Gestures.Add("ZoomIn", zoomInSegments);
 
 			var zoomOutSegments = new IRelativeGestureSegment[3];
 			zoomOutSegments[0] = new ZoomSegment3();
 			zoomOutSegments[1] = new ZoomSegment2();
 			zoomOutSegments[2] = new ZoomSegment1();
-			gestureController.AddGesture("ZoomOut", zoomOutSegments);
+			Gestures.Add("ZoomOut", zoomOutSegments);
 
 			var swipeUpSegments = new IRelativeGestureSegment[3];
 			swipeUpSegments[0] = new SwipeUpSegment1();
 			swipeUpSegments[1] = new SwipeUpSegment2();
 			swipeUpSegments[2] = new SwipeUpSegment3();
-			gestureController.AddGesture("SwipeUp", swipeUpSegments);
+			Gestures.Add("SwipeUp", swipeUpSegments);
 
 			var swipeDownSegments = new IRelativeGestureSegment[3];
 			swipeDownSegments[0] = new SwipeDownSegment1();
 			swipeDownSegments[1] = new SwipeDownSegment2();
 			swipeDownSegments[2] = new SwipeDownSegment3();
-			gestureController.AddGesture("SwipeDown", swipeDownSegments);
+			Gestures.Add("SwipeDown", swipeDownSegments);
 		}
 	}
 }

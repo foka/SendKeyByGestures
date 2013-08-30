@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Fizbin.Kinect.Gestures;
 using Microsoft.Kinect;
@@ -13,6 +14,7 @@ namespace SendKeyByGesture
 		{
 			KinectSensorChooser = new KinectSensorChooser();
 			KinectSensorManager = new KinectSensorManager();
+			GestureWithKeyCollection = GesturesRegistry.CreateGesturesWithKeys();
 		}
 
 
@@ -27,6 +29,16 @@ namespace SendKeyByGesture
 				if (value == log) return;
 				log = value;
 				RaisePropertyChanged("Log");
+			}
+		}
+
+		public IEnumerable<GestureWithKeyViewModel> GestureWithKeyCollection
+		{
+			get { return gestureWithKeyCollection; }
+			private set
+			{
+				gestureWithKeyCollection = value;
+				RaisePropertyChanged("GestureWithKeyCollection");
 			}
 		}
 
@@ -75,7 +87,10 @@ namespace SendKeyByGesture
 
 			gestureController = new GestureController();
 			gestureController.GestureRecognized += OnGestureRecognized;
-			GesturesRegistar.RegisterGestures(gestureController);
+			foreach (var g in GesturesRegistry.Gestures)
+			{
+				gestureController.AddGesture(g.Key, g.Value);
+			}
 		}
 
 		private void StopKinect(KinectSensor sensor)
@@ -119,7 +134,7 @@ namespace SendKeyByGesture
 
 		private void RaisePropertyChanged(string propertyName)
 		{
-			PropertyChangedEventHandler handler = PropertyChanged;
+			var handler = PropertyChanged;
 			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
 		}
 
@@ -127,5 +142,7 @@ namespace SendKeyByGesture
 		private string log;
 		private Skeleton[] skeletons = new Skeleton[0];
 		private GestureController gestureController;
+		private IEnumerable<GestureWithKeyViewModel> gestureWithKeyCollection;
+
 	}
 }

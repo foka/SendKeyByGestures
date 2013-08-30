@@ -40,8 +40,8 @@
 <!--			ElevationAngle-->
 <!--			Sitting-->
 <!--			Log exception on textBox-->
-			<ListBox >
-				
+			<ListBox ItemsSource="{Binding GestureWithKeyCollection}">
+
 			</ListBox>
 		</StackPanel>
 	</Grid>
