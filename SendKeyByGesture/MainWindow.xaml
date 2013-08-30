@@ -15,8 +15,8 @@
 	</d:Window.DataContext>
 	
 	<Window.Resources>
-		<WpfViewers:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
 		<SendKeyByGesture:KinectSensorConnectedConverter x:Key="KinectSensorConnectedConverter" />
+		<SendKeyByGesture:SkeletonTrackingModeIsSeatedConverter x:Key="SkeletonTrackingModeIsSeatedConverter" />
 	</Window.Resources>
 
 	<Grid>
@@ -32,7 +32,6 @@
 			<ColumnDefinition Width="150"/>
 		</Grid.ColumnDefinitions>
 
-		<k:KinectSensorChooserUI x:Name="kinectSensorChooserUI" />
 		<WpfViewers:KinectColorViewer KinectSensorManager="{Binding KinectSensorManager}"/>
 		<WpfViewers:KinectSkeletonViewer KinectSensorManager="{Binding KinectSensorManager}"/>
 
@@ -67,9 +66,8 @@
 						ToolTip="{Binding KinectSensorManager.KinectSensor.ElevationAngle}" />
 
 				<TextBlock Text="Seated" Margin="3" VerticalAlignment="Center" Grid.Row="1"/>
-<!--				<CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"-->
-<!--						  IsChecked="{Binding KinectSensorManager.SkeletonTrackingMode, Converter={StaticResource SkeletonTrackingModeConverter}}"/>-->
-				
+				<CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+						  IsChecked="{Binding KinectSensorManager.SkeletonTrackingMode, Converter={StaticResource SkeletonTrackingModeIsSeatedConverter}}"/>				
 			</Grid>
 			
 			<Grid Background="#EEEEEE" Margin="0 5 0 0">
@@ -126,5 +124,7 @@
 				</DataGrid.Columns>
 			</DataGrid>
 		</StackPanel>
+
+		<k:KinectSensorChooserUI x:Name="kinectSensorChooserUI" />
 	</Grid>
 </Window>
