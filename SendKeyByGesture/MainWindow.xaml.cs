@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 
 namespace SendKeyByGesture
 {
@@ -23,6 +24,11 @@ namespace SendKeyByGesture
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			((MainWindowViewModel)DataContext).Close();
+		}
+
+		private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
+		{
+			Process.Start("http://msdn.microsoft.com/en-us/library/system.windows.forms.sendkeys.aspx");
 		}
 	}
 }

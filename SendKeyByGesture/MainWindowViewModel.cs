@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using Fizbin.Kinect.Gestures;
 using Microsoft.Kinect;
@@ -91,6 +90,8 @@ namespace SendKeyByGesture
 			{
 				gestureController.AddGesture(g.Key, g.Value);
 			}
+
+			// http://msdn.microsoft.com/en-us/library/system.windows.forms.sendkeys.aspx
 		}
 
 		private void StopKinect(KinectSensor sensor)
