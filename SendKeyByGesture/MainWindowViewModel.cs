@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Forms;
 using Fizbin.Kinect.Gestures;
 using Microsoft.Kinect;
 using Microsoft.Kinect.Toolkit;
 using Microsoft.Samples.Kinect.WpfViewers;
+using System.Linq;
 
 namespace SendKeyByGesture
 {
@@ -13,7 +16,9 @@ namespace SendKeyByGesture
 		{
 			KinectSensorChooser = new KinectSensorChooser();
 			KinectSensorManager = new KinectSensorManager();
+
 			GestureWithKeyCollection = GesturesRegistry.CreateGesturesWithKeys();
+			gesturesDictionary = GestureWithKeyCollection.ToDictionary(g => g.GestureName, g => g);
 		}
 
 
@@ -99,6 +104,7 @@ namespace SendKeyByGesture
 		private void OnGestureRecognized(object sender, GestureEventArgs e)
 		{
 			Log = DateTime.Now.ToString("[HH:mm:ss.fff]  ") + e.GestureName + "\n" + Log;
+			SendKeys.SendWait(gesturesDictionary[e.GestureName].Key);
 		}
 
 		private void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
@@ -141,6 +147,6 @@ namespace SendKeyByGesture
 		private Skeleton[] skeletons = new Skeleton[0];
 		private GestureController gestureController;
 		private GestureWithKeyViewModel[] gestureWithKeyCollection;
-
+		private readonly IDictionary<string, GestureWithKeyViewModel> gesturesDictionary;
 	}
 }
