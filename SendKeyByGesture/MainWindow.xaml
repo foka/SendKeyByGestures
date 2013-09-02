@@ -66,7 +66,8 @@
 						Minimum="-27" Maximum="27" Value="{Binding KinectSensorManager.KinectSensor.ElevationAngle, Mode=OneWay}"
 						ToolTip="{Binding KinectSensorManager.KinectSensor.ElevationAngle}"
 						PreviewMouseUp="tiltSlider_OnPreviewMouseUp"
-						ValueChanged="tiltSlider_OnValueChanged" />
+						ValueChanged="tiltSlider_OnValueChanged"
+						SmallChange="1"/>
 
 				<TextBlock Text="Seated" Margin="3" VerticalAlignment="Center" Grid.Row="1"/>
 				<CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
