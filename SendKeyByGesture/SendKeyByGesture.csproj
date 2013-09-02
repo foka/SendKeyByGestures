@@ -72,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ReturnGestureCoordinator.cs" />
     <Compile Include="Segments\LeftHandSwipeRightSegments.cs" />
     <Compile Include="Segments\RightHandSwipeLeftSegments.cs" />
     <Compile Include="SkeletonTrackingModeIsSeatedConverter.cs" />

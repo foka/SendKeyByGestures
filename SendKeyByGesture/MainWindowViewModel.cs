@@ -18,6 +18,7 @@ namespace SendKeyByGesture
 		{
 			KinectSensorChooser = new KinectSensorChooser();
 			KinectSensorManager = new KinectSensorManager();
+			this.returnGestureCoordinator = new ReturnGestureCoordinator();
 
 			GestureWithKeyCollection = GesturesRegistry.CreateGesturesWithKeys();
 			LoadConfig();
@@ -134,9 +135,13 @@ namespace SendKeyByGesture
 
 		private void OnGestureRecognized(object sender, GestureEventArgs e)
 		{
+			if (returnGestureCoordinator.CancelReturnGesture(e.GestureName))
+				return;
+
 			Log = DateTime.Now.ToString("[HH:mm:ss.fff]  ") + e.GestureName + "\n" + Log;
 			SendKeys.SendWait(gesturesDictionary[e.GestureName].Keys);
 		}
+
 
 		private void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
 		{
@@ -179,5 +184,6 @@ namespace SendKeyByGesture
 		private GestureController gestureController;
 		private GestureWithKeyViewModel[] gestureWithKeyCollection;
 		private readonly IDictionary<string, GestureWithKeyViewModel> gesturesDictionary;
+		private ReturnGestureCoordinator returnGestureCoordinator;
 	}
 }
