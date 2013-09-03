@@ -4,7 +4,7 @@ namespace SendKeyByGesture
 {
 	public class GestureWithKeyViewModel : INotifyPropertyChanged
 	{
-		public static readonly string GesstureProperty = "Gessture";
+		public static readonly string GestureProperty = "Gesture";
 		public static readonly string KeyProperty = "Keys";
 
 		public string GestureName
@@ -14,7 +14,7 @@ namespace SendKeyByGesture
 			{
 				if (value == gestureName) return;
 				gestureName = value;
-				RaisePropertyChanged(GesstureProperty);
+				RaisePropertyChanged(GestureProperty);
 			}
 		}
 

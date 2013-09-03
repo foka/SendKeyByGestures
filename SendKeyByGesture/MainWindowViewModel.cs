@@ -14,9 +14,9 @@ namespace SendKeyByGesture
 {
 	public class MainWindowViewModel : INotifyPropertyChanged
 	{
-		public MainWindowViewModel()
+		public MainWindowViewModel(KinectSensorChooser kinectSensorChooser)
 		{
-			KinectSensorChooser = new KinectSensorChooser();
+			KinectSensorChooser = kinectSensorChooser;
 			KinectSensorManager = new KinectSensorManager();
 			this.returnGestureCoordinator = new ReturnGestureCoordinator();
 

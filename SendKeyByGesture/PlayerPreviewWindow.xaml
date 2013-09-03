@@ -1,0 +1,22 @@
+﻿<Window x:Class="SendKeyByGesture.PlayerPreviewWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:k="http://schemas.microsoft.com/kinect/2013"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:SendKeyByGesture="clr-namespace:SendKeyByGesture" Title="PlayerPreviewWindow"
+		Height="225" Width="300"
+		Background="Transparent" mc:Ignorable="d">
+
+	<d:Window.DataContext>
+		<SendKeyByGesture:PlayerPreviewViewModel />
+	</d:Window.DataContext>
+
+<!--	<Border BorderThickness="1" BorderBrush="Gray">-->
+		<k:KinectRegion KinectSensor="{Binding KinectSensorChooser.Kinect}"
+						IsCursorVisible="False">
+			<k:KinectUserViewer UserColoringMode="HighlightPrimary"
+								HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+		</k:KinectRegion>
+<!--	</Border>-->
+</Window>
