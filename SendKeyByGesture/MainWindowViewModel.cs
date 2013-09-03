@@ -9,6 +9,7 @@ using Microsoft.Kinect;
 using Microsoft.Kinect.Toolkit;
 using Microsoft.Samples.Kinect.WpfViewers;
 using System.Linq;
+using SendKeyByGesture.Gestures;
 
 namespace SendKeyByGesture
 {
@@ -18,7 +19,8 @@ namespace SendKeyByGesture
 		{
 			KinectSensorChooser = kinectSensorChooser;
 			KinectSensorManager = new KinectSensorManager();
-			this.returnGestureCoordinator = new ReturnGestureCoordinator();
+			returnGestureCoordinator = new ReturnGestureCoordinator();
+			gestureControllers = new Dictionary<int, GestureController>();
 
 			GestureWithKeyCollection = GesturesRegistry.CreateGesturesWithKeys();
 			LoadConfig();
@@ -119,13 +121,6 @@ namespace SendKeyByGesture
 			};
 			KinectSensorManager.DepthStreamEnabled = true;
 			KinectSensorManager.ColorStreamEnabled = true;
-
-			gestureController = new GestureController();
-			gestureController.GestureRecognized += OnGestureRecognized;
-			foreach (var g in GesturesRegistry.Gestures)
-			{
-				gestureController.AddGesture(g.Key, g.Value);
-			}
 		}
 
 		private void StopKinect(KinectSensor sensor)
@@ -135,7 +130,7 @@ namespace SendKeyByGesture
 
 		private void OnGestureRecognized(object sender, GestureEventArgs e)
 		{
-			if (returnGestureCoordinator.CancelReturnGesture(e.GestureName))
+			if (returnGestureCoordinator.CancelReturnGesture(e.GestureName, e.TrackingId))
 				return;
 
 			Log = DateTime.Now.ToString("[HH:mm:ss.fff]  ") + e.GestureName + "\n" + Log;
@@ -156,16 +151,35 @@ namespace SendKeyByGesture
 
 				// get the skeleton data
 				frame.CopySkeletonDataTo(skeletons);
-
+				 
 				foreach (var skeleton in skeletons)
 				{
 					// skip the skeleton if it is not being tracked
 					if (skeleton.TrackingState != SkeletonTrackingState.Tracked)
 						continue;
 
+					var gestureController = GetGestureController(skeleton.TrackingId);
+
 					// update the gesture controller
 					gestureController.UpdateAllGestures(skeleton);
 				}
+			}
+		}
+
+		private GestureController GetGestureController(int trackingId)
+		{
+			lock (gestureControllers)
+			{
+				if (gestureControllers.ContainsKey(trackingId))
+					return gestureControllers[trackingId];
+
+				var gestureController = new GestureController();
+				gestureController.GestureRecognized += OnGestureRecognized;
+				foreach (var g in GesturesRegistry.Gestures)
+				{
+					gestureController.AddGesture(g.Key, g.Value);
+				}
+				return gestureControllers[trackingId] = gestureController;
 			}
 		}
 
@@ -181,9 +195,10 @@ namespace SendKeyByGesture
 
 		private string log;
 		private Skeleton[] skeletons = new Skeleton[0];
-		private GestureController gestureController;
 		private GestureWithKeyViewModel[] gestureWithKeyCollection;
 		private readonly IDictionary<string, GestureWithKeyViewModel> gesturesDictionary;
-		private ReturnGestureCoordinator returnGestureCoordinator;
+		private readonly ReturnGestureCoordinator returnGestureCoordinator;
+		// key: trackingId
+		private readonly IDictionary<int, GestureController> gestureControllers;
 	}
 }

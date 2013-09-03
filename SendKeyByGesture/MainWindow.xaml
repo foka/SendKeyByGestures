@@ -6,7 +6,7 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:WpfViewers="clr-namespace:Microsoft.Samples.Kinect.WpfViewers;assembly=Microsoft.Samples.Kinect.WpfViewers"
         xmlns:SendKeyByGesture="clr-namespace:SendKeyByGesture"
-        Title="MainWindow" Height="438" Width="581"
+        xmlns:Converters="clr-namespace:SendKeyByGesture.Converters" Title="MainWindow" Height="438" Width="581"
 		Loaded="Window_Loaded" Closing="Window_Closing" mc:Ignorable="d"
 		x:Name="thisWindow">
 	
@@ -15,8 +15,8 @@
 	</d:Window.DataContext>
 	
 	<Window.Resources>
-		<SendKeyByGesture:KinectSensorConnectedConverter x:Key="KinectSensorConnectedConverter" />
-		<SendKeyByGesture:SkeletonTrackingModeIsSeatedConverter x:Key="SkeletonTrackingModeIsSeatedConverter" />
+		<Converters:KinectSensorConnectedConverter x:Key="KinectSensorConnectedConverter" />
+		<Converters:SkeletonTrackingModeIsSeatedConverter x:Key="SkeletonTrackingModeIsSeatedConverter" />
 	</Window.Resources>
 
 	<Grid>

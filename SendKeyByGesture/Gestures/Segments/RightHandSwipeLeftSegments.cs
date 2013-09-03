@@ -1,7 +1,7 @@
 ﻿using Fizbin.Kinect.Gestures;
 using Microsoft.Kinect;
 
-namespace SendKeyByGesture.Segments
+namespace SendKeyByGesture.Gestures.Segments
 {
 	// Seated-mode-ready swipe-left gesture made with right hand
 

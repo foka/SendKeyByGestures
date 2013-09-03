@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using Microsoft.Kinect;
 
-namespace SendKeyByGesture
+namespace SendKeyByGesture.Converters
 {
 	public class SkeletonTrackingModeIsSeatedConverter : IValueConverter
 	{

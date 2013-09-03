@@ -2,9 +2,9 @@
 using System.Linq;
 using Fizbin.Kinect.Gestures;
 using Fizbin.Kinect.Gestures.Segments;
-using SendKeyByGesture.Segments;
+using SendKeyByGesture.Gestures.Segments;
 
-namespace SendKeyByGesture
+namespace SendKeyByGesture.Gestures
 {
 	public static class GesturesRegistry
 	{

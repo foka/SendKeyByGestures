@@ -83,10 +83,10 @@
     <Compile Include="PlayerPreviewWindow.xaml.cs">
       <DependentUpon>PlayerPreviewWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReturnGestureCoordinator.cs" />
-    <Compile Include="Segments\LeftHandSwipeRightSegments.cs" />
-    <Compile Include="Segments\RightHandSwipeLeftSegments.cs" />
-    <Compile Include="SkeletonTrackingModeIsSeatedConverter.cs" />
+    <Compile Include="Gestures\ReturnGestureCoordinator.cs" />
+    <Compile Include="Gestures\Segments\LeftHandSwipeRightSegments.cs" />
+    <Compile Include="Gestures\Segments\RightHandSwipeLeftSegments.cs" />
+    <Compile Include="Converters\SkeletonTrackingModeIsSeatedConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,9 +95,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GesturesRegistry.cs" />
-    <Compile Include="GestureWithKeyViewModel.cs" />
-    <Compile Include="KinectSensorConnectedConverter.cs" />
+    <Compile Include="Gestures\GesturesRegistry.cs" />
+    <Compile Include="Gestures\GestureWithKeyViewModel.cs" />
+    <Compile Include="Converters\KinectSensorConnectedConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

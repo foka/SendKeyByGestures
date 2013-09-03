@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace SendKeyByGesture
+namespace SendKeyByGesture.Gestures
 {
 	public class GestureWithKeyViewModel : INotifyPropertyChanged
 	{
