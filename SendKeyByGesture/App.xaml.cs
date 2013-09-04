@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
@@ -14,6 +15,15 @@ namespace SendKeyByGesture
 	/// </summary>
 	public partial class App : Application
 	{
+		public App()
+		{
+			gestureImageUri = new Dictionary<string, string>
+			{
+			    { GesturesRegistry.HR_Kozakiewicz, "/Images/Kozakiewicz.jpg" }
+			};
+		}
+
+
 		private void App_OnStartup(object sender, StartupEventArgs e)
 		{
 			var kinectSensorChooser = new KinectSensorChooser();
@@ -48,11 +58,7 @@ namespace SendKeyByGesture
 
 			mainWindowViewModel.GestureRecognized += (_, args) => 
 			{
-				ImageSource imageSource = null;
-				if (args.GestureName == GesturesRegistry.HR_Kozakiewicz)
-				{
-					imageSource = new BitmapImage(new Uri("pack://application:,,,/Images/Kozakiewicz.jpg"));
-				}
+				var imageSource = GetImageForGesture(args.GestureName);
 				if (imageSource == null)
 					return;
 
@@ -78,8 +84,16 @@ namespace SendKeyByGesture
 			imageWindow.SetPosition(screen);
 		}
 
+		private ImageSource GetImageForGesture(string gesture)
+		{
+			return gestureImageUri.ContainsKey(gesture)
+				? new BitmapImage(new Uri("pack://application:,,," + gestureImageUri[gesture]))
+				: null;
+		}
+
 		private ImageWindow imageWindow;
 		private MainWindow mainWindow;
 		private PlayerPreviewWindow playerWindow;
+		private readonly IDictionary<string, string> gestureImageUri;
 	}
 }
