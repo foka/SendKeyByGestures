@@ -12,8 +12,8 @@ namespace SendKeyByGesture
 
 		public void SetPosition(Screen screen)
 		{
-			Left = screen.WorkingArea.Width + screen.WorkingArea.Left - Width;
-			Top = screen.WorkingArea.Height + screen.WorkingArea.Top - Height;
+			Left = screen.Bounds.Width + screen.Bounds.Left - Width;
+			Top = screen.Bounds.Height + screen.Bounds.Top - Height;
 		}
 	}
 }

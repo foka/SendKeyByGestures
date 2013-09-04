@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using Microsoft.Kinect.Toolkit;
 using Application = System.Windows.Application;
 
@@ -22,6 +21,7 @@ namespace SendKeyByGesture
 				WindowStyle = WindowStyle.None,
 				AllowsTransparency = true,
 				ShowInTaskbar = false,
+				Opacity = 0.33
 			};
 
 
