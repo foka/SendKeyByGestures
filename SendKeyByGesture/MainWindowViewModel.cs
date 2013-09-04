@@ -111,6 +111,7 @@ namespace SendKeyByGesture
 			KinectSensorManager.ElevationAngle = sensor.ElevationAngle;
 			KinectSensorManager.KinectSensor = sensor;
 			KinectSensorManager.SkeletonStreamEnabled = true;
+			KinectSensorManager.SkeletonEnableTrackingInNearMode = false;
 			KinectSensorManager.TransformSmoothParameters = new TransformSmoothParameters
 			{
 				Smoothing = 0.99f,
@@ -145,22 +146,18 @@ namespace SendKeyByGesture
 				if (frame == null)
 					return;
 
-				// resize the skeletons array if needed
 				if (skeletons.Length != frame.SkeletonArrayLength)
 					skeletons = new Skeleton[frame.SkeletonArrayLength];
 
-				// get the skeleton data
 				frame.CopySkeletonDataTo(skeletons);
-				 
+
 				foreach (var skeleton in skeletons)
 				{
-					// skip the skeleton if it is not being tracked
 					if (skeleton.TrackingState != SkeletonTrackingState.Tracked)
 						continue;
 
 					var gestureController = GetGestureController(skeleton.TrackingId);
 
-					// update the gesture controller
 					gestureController.UpdateAllGestures(skeleton);
 				}
 			}

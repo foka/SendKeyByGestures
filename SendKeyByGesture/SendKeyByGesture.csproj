@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Gestures\Segments\RightKozakiewiczSegments.cs" />
     <Compile Include="PlayerPreviewViewModel.cs" />
     <Compile Include="PlayerPreviewWindow.xaml.cs">
       <DependentUpon>PlayerPreviewWindow.xaml</DependentUpon>

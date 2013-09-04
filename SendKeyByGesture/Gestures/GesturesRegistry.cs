@@ -72,6 +72,15 @@ namespace SendKeyByGesture.Gestures
 			leftHandSwipeLeft[1] = new LeftHandSwipeRightSegment2();
 			leftHandSwipeLeft[2] = new LeftHandSwipeRightSegment1();
 			Gestures.Add("LeftHandSwipeLeft", leftHandSwipeLeft);
+
+			var rightKozakiewicz = new IRelativeGestureSegment[]
+			{
+				new RightKozakiewiczSegment1(),
+				new RightKozakiewiczSegment2(),
+				new RightKozakiewiczSegment3(),
+				new RightKozakiewiczSegment4(),
+			};
+			Gestures.Add("RightKozakiewicz", rightKozakiewicz);
 		}
 
 		public static readonly string RightHandSwipeLeft = "RightHandSwipeLeft";
