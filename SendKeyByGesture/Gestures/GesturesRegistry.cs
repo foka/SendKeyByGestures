@@ -53,25 +53,25 @@ namespace SendKeyByGesture.Gestures
 			rightHandSwipeLeft[0] = new RightHandSwipeLeftSegment1();
 			rightHandSwipeLeft[1] = new RightHandSwipeLeftSegment2();
 			rightHandSwipeLeft[2] = new RightHandSwipeLeftSegment3();
-			Gestures.Add("RightHandSwipeLeft", rightHandSwipeLeft);
+			Gestures.Add("HR_SwipeLeft", rightHandSwipeLeft);
 
 			var rightHandSwipeRight = new IRelativeGestureSegment[3];
 			rightHandSwipeRight[0] = new RightHandSwipeLeftSegment3();
 			rightHandSwipeRight[1] = new RightHandSwipeLeftSegment2();
 			rightHandSwipeRight[2] = new RightHandSwipeLeftSegment1();
-			Gestures.Add("RightHandSwipeRight", rightHandSwipeRight);
-
-			var leftHandSwipeRight = new IRelativeGestureSegment[3];
-			leftHandSwipeRight[0] = new LeftHandSwipeRightSegment1();
-			leftHandSwipeRight[1] = new LeftHandSwipeRightSegment2();
-			leftHandSwipeRight[2] = new LeftHandSwipeRightSegment3();
-			Gestures.Add("LeftHandSwipeRight", leftHandSwipeRight);
+			Gestures.Add("HR_SwipeRight", rightHandSwipeRight);
 
 			var leftHandSwipeLeft = new IRelativeGestureSegment[3];
 			leftHandSwipeLeft[0] = new LeftHandSwipeRightSegment3();
 			leftHandSwipeLeft[1] = new LeftHandSwipeRightSegment2();
 			leftHandSwipeLeft[2] = new LeftHandSwipeRightSegment1();
-			Gestures.Add("LeftHandSwipeLeft", leftHandSwipeLeft);
+			Gestures.Add("HL_SwipeLeft", leftHandSwipeLeft);
+
+			var leftHandSwipeRight = new IRelativeGestureSegment[3];
+			leftHandSwipeRight[0] = new LeftHandSwipeRightSegment1();
+			leftHandSwipeRight[1] = new LeftHandSwipeRightSegment2();
+			leftHandSwipeRight[2] = new LeftHandSwipeRightSegment3();
+			Gestures.Add("HL_SwipeRight", leftHandSwipeRight);
 
 			var rightKozakiewicz = new IRelativeGestureSegment[]
 			{
@@ -80,12 +80,12 @@ namespace SendKeyByGesture.Gestures
 				new RightKozakiewiczSegment3(),
 				new RightKozakiewiczSegment4(),
 			};
-			Gestures.Add("RightKozakiewicz", rightKozakiewicz);
+			Gestures.Add("HR_Kozakiewicz", rightKozakiewicz);
 		}
 
-		public static readonly string RightHandSwipeLeft = "RightHandSwipeLeft";
-		public static readonly string RightHandSwipeRight = "RightHandSwipeRight";
-		public static readonly string LeftHandSwipeRight = "LeftHandSwipeRight";
-		public static readonly string LeftHandSwipeLeft = "LeftHandSwipeLeft";
+		public static readonly string HR_SwipeLeft = "HR_SwipeLeft";
+		public static readonly string HR_SwipeRight = "HR_SwipeRight";
+		public static readonly string HL_SwipeLeft = "HL_SwipeLeft";
+		public static readonly string HL_SwipeRight = "HL_SwipeRight";
 	}
 }

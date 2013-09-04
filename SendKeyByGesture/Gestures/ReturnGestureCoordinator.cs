@@ -9,8 +9,8 @@ namespace SendKeyByGesture.Gestures
 		private const int gestureLifetime = 3000;
 		private static readonly IEnumerable<string[]> returnGesturePairs = new []
 		{
-			new[] {GesturesRegistry.LeftHandSwipeLeft, GesturesRegistry.LeftHandSwipeRight},
-			new[] {GesturesRegistry.RightHandSwipeLeft, GesturesRegistry.RightHandSwipeRight}
+			new[] {GesturesRegistry.HL_SwipeLeft, GesturesRegistry.HL_SwipeRight},
+			new[] {GesturesRegistry.HR_SwipeLeft, GesturesRegistry.HR_SwipeRight}
 		};
 
 		// key: trackingId
