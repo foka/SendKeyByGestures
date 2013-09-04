@@ -87,5 +87,6 @@ namespace SendKeyByGesture.Gestures
 		public static readonly string HR_SwipeRight = "HR_SwipeRight";
 		public static readonly string HL_SwipeLeft = "HL_SwipeLeft";
 		public static readonly string HL_SwipeRight = "HL_SwipeRight";
+		public static readonly string HR_Kozakiewicz = "HR_Kozakiewicz";
 	}
 }

@@ -79,6 +79,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Gestures\Segments\RightKozakiewiczSegments.cs" />
+    <Compile Include="ImageWindow.xaml.cs">
+      <DependentUpon>ImageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlayerPreviewViewModel.cs" />
     <Compile Include="PlayerPreviewWindow.xaml.cs">
       <DependentUpon>PlayerPreviewWindow.xaml</DependentUpon>
@@ -87,6 +90,10 @@
     <Compile Include="Gestures\Segments\LeftHandSwipeRightSegments.cs" />
     <Compile Include="Gestures\Segments\RightHandSwipeLeftSegments.cs" />
     <Compile Include="Converters\SkeletonTrackingModeIsSeatedConverter.cs" />
+    <Page Include="ImageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -142,7 +149,9 @@
       <Link>KinectInteraction170_32.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\Kozakiewicz.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

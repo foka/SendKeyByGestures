@@ -134,6 +134,8 @@ namespace SendKeyByGesture
 			if (returnGestureCoordinator.CancelReturnGesture(e.GestureName, e.TrackingId))
 				return;
 
+			RaiseGestureRecognized(e);
+
 			Log = DateTime.Now.ToString("[HH:mm:ss.fff]  ") + e.GestureName + "\n" + Log;
 			SendKeys.SendWait(gesturesDictionary[e.GestureName].Keys);
 		}
@@ -180,6 +182,13 @@ namespace SendKeyByGesture
 			}
 		}
 
+		public event EventHandler<GestureEventArgs> GestureRecognized;
+
+		public void RaiseGestureRecognized(GestureEventArgs e)
+		{
+			var handler = GestureRecognized;
+			if (handler != null) handler(this, e);
+		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
