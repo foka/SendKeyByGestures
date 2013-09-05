@@ -11,9 +11,9 @@ using SendKeyByGesture.Gestures;
 
 namespace SendKeyByGesture
 {
-	public class MainWindowViewModel : INotifyPropertyChanged
+	public class MainViewModel : INotifyPropertyChanged
 	{
-		public MainWindowViewModel(KinectSensorChooser kinectSensorChooser,
+		public MainViewModel(KinectSensorChooser kinectSensorChooser,
 			PlayerPreviewViewModel playerPreviewViewModel,
 			GestureWithKeyViewModel[] gestureWithKeyCollection)
 		{

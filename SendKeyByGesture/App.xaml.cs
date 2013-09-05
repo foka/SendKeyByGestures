@@ -32,7 +32,7 @@ namespace SendKeyByGesture
 			var gesturesWithKeys = GesturesRegistry.CreateGesturesWithKeys();
 
 			var playerPreviewViewModel = new PlayerPreviewViewModel(kinectSensorChooser);
-			var mainWindowViewModel = new MainWindowViewModel(kinectSensorChooser, playerPreviewViewModel, gesturesWithKeys);
+			var mainWindowViewModel = new MainViewModel(kinectSensorChooser, playerPreviewViewModel, gesturesWithKeys);
 			mainWindow = new MainWindow(mainWindowViewModel);
 
 			playerWindow = new PlayerPreviewWindow (playerPreviewViewModel)

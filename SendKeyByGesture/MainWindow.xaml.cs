@@ -10,12 +10,12 @@ namespace SendKeyByGesture
 	/// </summary>
 	public partial class MainWindow
 	{
-		private readonly MainWindowViewModel viewModel;
+		private readonly MainViewModel viewModel;
 
-		public MainWindow(MainWindowViewModel mainWindowViewModel)
+		public MainWindow(MainViewModel mainViewModel)
 		{
-			viewModel = mainWindowViewModel;
-			DataContext = mainWindowViewModel;
+			viewModel = mainViewModel;
+			DataContext = mainViewModel;
 			InitializeComponent();
 		}
 
