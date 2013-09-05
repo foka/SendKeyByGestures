@@ -4,19 +4,25 @@
 		xmlns:k="http://schemas.microsoft.com/kinect/2013"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:SendKeyByGesture="clr-namespace:SendKeyByGesture" Title="PlayerPreviewWindow"
+        xmlns:SendKeyByGesture="clr-namespace:SendKeyByGesture"
+        xmlns:Converters="clr-namespace:SendKeyByGesture.Converters" Title="PlayerPreviewWindow"
 		Height="225" Width="300"
 		Background="Transparent" mc:Ignorable="d">
 
 	<d:Window.DataContext>
 		<SendKeyByGesture:PlayerPreviewViewModel />
 	</d:Window.DataContext>
+	
+	<Window.Resources>
+		<ResourceDictionary>
+			<Converters:PercentageBrightnessToGreyscaleColorConverter x:Key="PercentageBrightnessToGreyscaleColorConverter" />
+		</ResourceDictionary>
+	</Window.Resources>
 
-<!--	<Border BorderThickness="1" BorderBrush="Gray">-->
-		<k:KinectRegion KinectSensor="{Binding KinectSensorChooser.Kinect}"
-						IsCursorVisible="False">
-			<k:KinectUserViewer UserColoringMode="HighlightPrimary"
-								HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-		</k:KinectRegion>
-<!--	</Border>-->
+	<k:KinectRegion KinectSensor="{Binding KinectSensorChooser.Kinect}"
+					IsCursorVisible="False">
+		<k:KinectUserViewer UserColoringMode="HighlightPrimary"
+							HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							DefaultUserColor="{Binding UserBrightness, Converter={StaticResource PercentageBrightnessToGreyscaleColorConverter}}" />
+	</k:KinectRegion>
 </Window>

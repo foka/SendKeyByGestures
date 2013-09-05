@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\PercentageBrightnessToGreyscaleColorConverter.cs" />
     <Compile Include="Gestures\Segments\RightKozakiewiczSegments.cs" />
     <Compile Include="ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>

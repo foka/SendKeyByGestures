@@ -29,7 +29,7 @@
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="200"/>
 		</Grid.ColumnDefinitions>
 
 		<WpfViewers:KinectDepthViewer x:Name="depthViewer" KinectSensorManager="{Binding KinectSensorManager}" />
@@ -59,6 +59,7 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 
 				<TextBlock Text="Tilt" Margin="3" VerticalAlignment="Center"/>
@@ -80,6 +81,14 @@
 				<TextBlock Text="Camera" Margin="3" VerticalAlignment="Center" Grid.Row="3"/>
 				<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
 						  x:Name="cameraCheckBox" Checked="CameraCheckBox_OnChecked" Unchecked="CameraCheckBox_OnUnchecked" />
+
+				<TextBlock Text="User brightness" Margin="3" VerticalAlignment="Center" Grid.Row="4"/>
+				<Slider Orientation="Horizontal" Grid.Column="1" Margin="3" Grid.Row="4"
+						Minimum="0" Maximum="100" Value="{Binding PlayerPreviewViewModel.UserBrightness}"
+						ToolTip="{Binding PlayerPreviewViewModel.UserBrightness}"
+						PreviewMouseUp="tiltSlider_OnPreviewMouseUp"
+						ValueChanged="tiltSlider_OnValueChanged"
+						SmallChange="1"/>
 			</Grid>
 			
 			<Grid Background="#EEEEEE" Margin="0 5 0 0">

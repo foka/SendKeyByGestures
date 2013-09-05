@@ -15,9 +15,11 @@ namespace SendKeyByGesture
 {
 	public class MainWindowViewModel : INotifyPropertyChanged
 	{
-		public MainWindowViewModel(KinectSensorChooser kinectSensorChooser)
+		public MainWindowViewModel(KinectSensorChooser kinectSensorChooser,
+			PlayerPreviewViewModel playerPreviewViewModel)
 		{
 			KinectSensorChooser = kinectSensorChooser;
+			PlayerPreviewViewModel = playerPreviewViewModel;
 			KinectSensorManager = new KinectSensorManager();
 			returnGestureCoordinator = new ReturnGestureCoordinator();
 			gestureControllers = new Dictionary<int, GestureController>();
@@ -30,6 +32,7 @@ namespace SendKeyByGesture
 
 		public KinectSensorChooser KinectSensorChooser { get; private set; }
 		public KinectSensorManager KinectSensorManager { get; private set; }
+		public PlayerPreviewViewModel PlayerPreviewViewModel { get; private set; }
 
 		public string Log
 		{

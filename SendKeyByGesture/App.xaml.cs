@@ -28,10 +28,11 @@ namespace SendKeyByGesture
 		{
 			var kinectSensorChooser = new KinectSensorChooser();
 
-			var mainWindowViewModel = new MainWindowViewModel(kinectSensorChooser);
+			var playerPreviewViewModel = new PlayerPreviewViewModel(kinectSensorChooser);
+			var mainWindowViewModel = new MainWindowViewModel(kinectSensorChooser, playerPreviewViewModel);
 			mainWindow = new MainWindow(mainWindowViewModel);
 
-			playerWindow = new PlayerPreviewWindow (new PlayerPreviewViewModel(kinectSensorChooser))
+			playerWindow = new PlayerPreviewWindow (playerPreviewViewModel)
 			{
 				Topmost = true,
 				WindowStyle = WindowStyle.None,
