@@ -6,53 +6,58 @@ namespace SendKeyByGesture
 {
 	public class PlayerPreviewViewModel : INotifyPropertyChanged
 	{
-		private const int brightnessMin = 0;
-		private const int brightnessMax = 100;
+		private const int BrightnessMin = 0;
+		private const int BrightnessMax = 100;
+		private const decimal OpacityMin = 0m;
+		private const decimal OpacityMax = 1m;
 
 
 		public PlayerPreviewViewModel(KinectSensorChooser kinectSensorChooser)
 		{
 			KinectSensorChooser = kinectSensorChooser;
-			UserBrightness = 75;
+			Brightness = 75;
+			Opacity = 0.33m;
 		}
 
 
 		public KinectSensorChooser KinectSensorChooser { get; set; }
 
-//		public Color DefaultUserColor
-//		{
-//			get { return defaultUserColor; }
-//			private set
-//			{
-//				if (value == defaultUserColor) return;
-//				defaultUserColor = value;
-//				RaisePropertyChanged(DefaultUserColorProperty);
-//			}
-//		}
-//		public static readonly string DefaultUserColorProperty = "DefaultUserColor";
-//		private Color defaultUserColor;
+		/// <summary>
+		/// Gets the user opacity (0.0 = transparent, 1.0 = opaque).
+		/// </summary>
+		public decimal Opacity
+		{
+			get { return opacity; }
+			set
+			{
+				if (value == opacity) return;
+				
+				value = Math.Max(OpacityMin, Math.Min(OpacityMax, value));
+				opacity = value;
+				RaisePropertyChanged(OpacityProperty);
+			}
+		}
+		public static readonly string OpacityProperty = "Opacity";
+		private decimal opacity;
 
 		/// <summary>
 		/// Gets or sets the user brightness (0 = black, 100 = white).
 		/// </summary>
-		public int UserBrightness
+		public int Brightness
 		{
-			get { return userBrightness; }
+			get { return brightness; }
 			set
 			{
-				if (value == userBrightness) return;
+				if (value == brightness) return;
 
-				value = Math.Max(brightnessMin, Math.Min(brightnessMax, value));
-				userBrightness = value;
-				RaisePropertyChanged(UserBrightnessProperty);
+				value = Math.Max(BrightnessMin, Math.Min(BrightnessMax, value));
+				brightness = value;
+				RaisePropertyChanged(BrightnessProperty);
 			}
 		}
 
-		public static readonly string UserBrightnessProperty = "UserBrightness";
-		private int userBrightness;
-
-
-
+		public static readonly string BrightnessProperty = "Brightness";
+		private int brightness;
 
 
 		public event PropertyChangedEventHandler PropertyChanged;

@@ -7,7 +7,8 @@
         xmlns:SendKeyByGesture="clr-namespace:SendKeyByGesture"
         xmlns:Converters="clr-namespace:SendKeyByGesture.Converters" Title="PlayerPreviewWindow"
 		Height="225" Width="300"
-		Background="Transparent" mc:Ignorable="d">
+		Background="Transparent" mc:Ignorable="d"
+		Opacity="{Binding Opacity}">
 
 	<d:Window.DataContext>
 		<SendKeyByGesture:PlayerPreviewViewModel />
@@ -21,8 +22,7 @@
 
 	<k:KinectRegion KinectSensor="{Binding KinectSensorChooser.Kinect}"
 					IsCursorVisible="False">
-		<k:KinectUserViewer UserColoringMode="HighlightPrimary"
-							HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-							DefaultUserColor="{Binding UserBrightness, Converter={StaticResource PercentageBrightnessToGreyscaleColorConverter}}" />
+		<k:KinectUserViewer UserColoringMode="Manual"
+							DefaultUserColor="{Binding Brightness, Converter={StaticResource PercentageBrightnessToGreyscaleColorConverter}}" />
 	</k:KinectRegion>
 </Window>

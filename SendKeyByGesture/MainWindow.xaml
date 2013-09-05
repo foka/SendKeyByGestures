@@ -60,6 +60,7 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 
 				<TextBlock Text="Tilt" Margin="3" VerticalAlignment="Center"/>
@@ -84,11 +85,15 @@
 
 				<TextBlock Text="User brightness" Margin="3" VerticalAlignment="Center" Grid.Row="4"/>
 				<Slider Orientation="Horizontal" Grid.Column="1" Margin="3" Grid.Row="4"
-						Minimum="0" Maximum="100" Value="{Binding PlayerPreviewViewModel.UserBrightness}"
-						ToolTip="{Binding PlayerPreviewViewModel.UserBrightness}"
-						PreviewMouseUp="tiltSlider_OnPreviewMouseUp"
-						ValueChanged="tiltSlider_OnValueChanged"
+						Minimum="0" Maximum="100" Value="{Binding PlayerPreviewViewModel.Brightness}"
+						ToolTip="{Binding PlayerPreviewViewModel.Brightness}"
 						SmallChange="1"/>
+
+				<TextBlock Text="User opacity" Margin="3" VerticalAlignment="Center" Grid.Row="5"/>
+				<Slider Orientation="Horizontal" Grid.Column="1" Margin="3" Grid.Row="5"
+						Minimum="0" Maximum="1" Value="{Binding PlayerPreviewViewModel.Opacity}"
+						ToolTip="{Binding PlayerPreviewViewModel.Opacity}"
+						SmallChange="0.01"/>
 			</Grid>
 			
 			<Grid Background="#EEEEEE" Margin="0 5 0 0">

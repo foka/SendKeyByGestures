@@ -38,7 +38,6 @@ namespace SendKeyByGesture
 				WindowStyle = WindowStyle.None,
 				AllowsTransparency = true,
 				ShowInTaskbar = false,
-				Opacity = 0.33
 			};
 
 			imageWindow = new ImageWindow
