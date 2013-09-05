@@ -15,8 +15,6 @@ namespace SendKeyByGesture
 		public PlayerPreviewViewModel(KinectSensorChooser kinectSensorChooser)
 		{
 			KinectSensorChooser = kinectSensorChooser;
-			Brightness = 75;
-			Opacity = 0.33m;
 		}
 
 
