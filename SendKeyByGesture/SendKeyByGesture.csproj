@@ -52,7 +52,7 @@
     <Reference Include="Microsoft.Kinect.Toolkit.Interaction">
       <HintPath>..\Library\Microsoft.Kinect.Toolkit.Interaction.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Samples.Kinect.WpfViewers, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Samples.Kinect.WpfViewers, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Microsoft.Samples.Kinect.WpfViewers.dll</HintPath>
     </Reference>

@@ -28,6 +28,7 @@
 			<k:KinectUserViewer UserColoringMode="Manual"
 								DefaultUserColor="{Binding Brightness, Converter={StaticResource PercentageBrightnessToGreyscaleColorConverter}}" />
 		</k:KinectRegion>
-		<WpfViewers:KinectSkeletonViewer KinectSensorManager="{Binding KinectSensorManager}"/>
+		<WpfViewers:KinectSkeletonViewer KinectSensorManager="{Binding KinectSensorManager}"
+										 ShowClippedEdges="False" ShowJoints="False" ShowCenter="False"/>
 	</Grid>
 </Window>
