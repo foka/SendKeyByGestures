@@ -22,32 +22,32 @@ namespace SendKeyByGesture.Gestures
 
 		private static void CreateGestures()
 		{
-			var joinedhandsSegments = new IRelativeGestureSegment[20];
-			var joinedhandsSegment = new JoinedHandsSegment1();
-			for (int i = 0; i < 20; i++)
-			{
-				// gesture consists of the same thing 10 times 
-				joinedhandsSegments[i] = joinedhandsSegment;
-			}
-			Gestures.Add("JoinedHands", joinedhandsSegments);
-
-			var waveRightSegments = new IRelativeGestureSegment[4];
-			var waveRightSegment1 = new WaveRightSegment1();
-			var waveRightSegment2 = new WaveRightSegment2();
-			waveRightSegments[0] = waveRightSegment1;
-			waveRightSegments[1] = waveRightSegment2;
-			waveRightSegments[2] = waveRightSegment1;
-			waveRightSegments[3] = waveRightSegment2;
-			Gestures.Add("WaveRight", waveRightSegments);
-
-			var waveLeftSegments = new IRelativeGestureSegment[4];
-			var waveLeftSegment1 = new WaveLeftSegment1();
-			var waveLeftSegment2 = new WaveLeftSegment2();
-			waveLeftSegments[0] = waveLeftSegment1;
-			waveLeftSegments[1] = waveLeftSegment2;
-			waveLeftSegments[2] = waveLeftSegment1;
-			waveLeftSegments[3] = waveLeftSegment2;
-			Gestures.Add("WaveLeft", waveLeftSegments);
+//			var joinedhandsSegments = new IRelativeGestureSegment[20];
+//			var joinedhandsSegment = new JoinedHandsSegment1();
+//			for (int i = 0; i < 20; i++)
+//			{
+//				// gesture consists of the same thing 10 times 
+//				joinedhandsSegments[i] = joinedhandsSegment;
+//			}
+//			Gestures.Add("JoinedHands", joinedhandsSegments);
+//
+//			var waveRightSegments = new IRelativeGestureSegment[4];
+//			var waveRightSegment1 = new WaveRightSegment1();
+//			var waveRightSegment2 = new WaveRightSegment2();
+//			waveRightSegments[0] = waveRightSegment1;
+//			waveRightSegments[1] = waveRightSegment2;
+//			waveRightSegments[2] = waveRightSegment1;
+//			waveRightSegments[3] = waveRightSegment2;
+//			Gestures.Add("WaveRight", waveRightSegments);
+//
+//			var waveLeftSegments = new IRelativeGestureSegment[4];
+//			var waveLeftSegment1 = new WaveLeftSegment1();
+//			var waveLeftSegment2 = new WaveLeftSegment2();
+//			waveLeftSegments[0] = waveLeftSegment1;
+//			waveLeftSegments[1] = waveLeftSegment2;
+//			waveLeftSegments[2] = waveLeftSegment1;
+//			waveLeftSegments[3] = waveLeftSegment2;
+//			Gestures.Add("WaveLeft", waveLeftSegments);
 
 			var rightHandSwipeLeft = new IRelativeGestureSegment[3];
 			rightHandSwipeLeft[0] = new RightHandSwipeLeftSegment1();
@@ -55,17 +55,17 @@ namespace SendKeyByGesture.Gestures
 			rightHandSwipeLeft[2] = new RightHandSwipeLeftSegment3();
 			Gestures.Add("HR_SwipeLeft", rightHandSwipeLeft);
 
-			var rightHandSwipeRight = new IRelativeGestureSegment[3];
-			rightHandSwipeRight[0] = new RightHandSwipeLeftSegment3();
-			rightHandSwipeRight[1] = new RightHandSwipeLeftSegment2();
-			rightHandSwipeRight[2] = new RightHandSwipeLeftSegment1();
-			Gestures.Add("HR_SwipeRight", rightHandSwipeRight);
+//			var rightHandSwipeRight = new IRelativeGestureSegment[3];
+//			rightHandSwipeRight[0] = new RightHandSwipeLeftSegment3();
+//			rightHandSwipeRight[1] = new RightHandSwipeLeftSegment2();
+//			rightHandSwipeRight[2] = new RightHandSwipeLeftSegment1();
+//			Gestures.Add("HR_SwipeRight", rightHandSwipeRight);
 
-			var leftHandSwipeLeft = new IRelativeGestureSegment[3];
-			leftHandSwipeLeft[0] = new LeftHandSwipeRightSegment3();
-			leftHandSwipeLeft[1] = new LeftHandSwipeRightSegment2();
-			leftHandSwipeLeft[2] = new LeftHandSwipeRightSegment1();
-			Gestures.Add("HL_SwipeLeft", leftHandSwipeLeft);
+//			var leftHandSwipeLeft = new IRelativeGestureSegment[3];
+//			leftHandSwipeLeft[0] = new LeftHandSwipeRightSegment3();
+//			leftHandSwipeLeft[1] = new LeftHandSwipeRightSegment2();
+//			leftHandSwipeLeft[2] = new LeftHandSwipeRightSegment1();
+//			Gestures.Add("HL_SwipeLeft", leftHandSwipeLeft);
 
 			var leftHandSwipeRight = new IRelativeGestureSegment[3];
 			leftHandSwipeRight[0] = new LeftHandSwipeRightSegment1();

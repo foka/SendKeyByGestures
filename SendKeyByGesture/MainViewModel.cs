@@ -21,7 +21,6 @@ namespace SendKeyByGesture
 			KinectSensorChooser = kinectSensorChooser;
 			PlayerPreviewViewModel = playerPreviewViewModel;
 			KinectSensorManager = new KinectSensorManager();
-			returnGestureCoordinator = new ReturnGestureCoordinator();
 			gestureControllers = new Dictionary<int, GestureController>();
 
 			GestureWithKeyCollection = gestureWithKeyCollection;
@@ -112,9 +111,6 @@ namespace SendKeyByGesture
 
 		private void OnGestureRecognized(object sender, GestureEventArgs e)
 		{
-			if (returnGestureCoordinator.CancelReturnGesture(e.GestureName, e.TrackingId))
-				return;
-
 			lock(frequentGestureLock)
 			{
 				if (!processGestures) return;
@@ -194,7 +190,6 @@ namespace SendKeyByGesture
 		private Skeleton[] skeletons = new Skeleton[0];
 		private GestureWithKeyViewModel[] gestureWithKeyCollection;
 		private readonly IDictionary<string, GestureWithKeyViewModel> gesturesDictionary;
-		private readonly ReturnGestureCoordinator returnGestureCoordinator;
 		// key: trackingId
 		private readonly IDictionary<int, GestureController> gestureControllers;
 		private readonly object gestureControllersLock;
