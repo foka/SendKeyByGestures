@@ -8,6 +8,7 @@ using Microsoft.Kinect.Toolkit;
 using Microsoft.Samples.Kinect.WpfViewers;
 using System.Linq;
 using SendKeyByGesture.Gestures;
+using Timer = System.Timers.Timer;
 
 namespace SendKeyByGesture
 {
@@ -25,6 +26,13 @@ namespace SendKeyByGesture
 
 			GestureWithKeyCollection = gestureWithKeyCollection;
 			gesturesDictionary = GestureWithKeyCollection.ToDictionary(g => g.GestureName, g => g);
+			gestureControllersLock = new object();
+
+			processGestures = true;
+			const double milisecondsBetweenGesturesMinimum = 500;
+			frequentGestureTimer = new Timer(milisecondsBetweenGesturesMinimum);
+			frequentGestureTimer.Elapsed += (_, __) => { lock (frequentGestureLock) processGestures = true; };
+			frequentGestureLock = new object();
 		}
 
 
@@ -107,10 +115,20 @@ namespace SendKeyByGesture
 			if (returnGestureCoordinator.CancelReturnGesture(e.GestureName, e.TrackingId))
 				return;
 
-			RaiseGestureRecognized(e);
+			lock(frequentGestureLock)
+			{
+				if (!processGestures) return;
 
-			Log = DateTime.Now.ToString("[HH:mm:ss.fff]  ") + e.GestureName + "\n" + Log;
+				processGestures = false;
+				frequentGestureTimer.Stop();
+				frequentGestureTimer.Start();
+			}
+
+			RaiseGestureRecognized(e);
 			SendKeys.SendWait(gesturesDictionary[e.GestureName].Keys);
+
+			Log = string.Format("[{0:HH:mm:ss.fff}] {1} \n", DateTime.Now, e.GestureName)
+			      + Log;
 		}
 
 
@@ -140,7 +158,7 @@ namespace SendKeyByGesture
 
 		private GestureController GetGestureController(int trackingId)
 		{
-			lock (gestureControllers)
+			lock (gestureControllersLock)
 			{
 				if (gestureControllers.ContainsKey(trackingId))
 					return gestureControllers[trackingId];
@@ -179,5 +197,10 @@ namespace SendKeyByGesture
 		private readonly ReturnGestureCoordinator returnGestureCoordinator;
 		// key: trackingId
 		private readonly IDictionary<int, GestureController> gestureControllers;
+		private readonly object gestureControllersLock;
+
+		private readonly object frequentGestureLock;
+		private readonly Timer frequentGestureTimer;
+		private bool processGestures;
 	}
 }
