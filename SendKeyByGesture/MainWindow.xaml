@@ -34,7 +34,6 @@
 
 		<Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="225">
 			<WpfViewers:KinectDepthViewer x:Name="depthViewer" KinectSensorManager="{Binding KinectSensorManager}" />
-			<WpfViewers:KinectColorViewer x:Name="colorViewer" KinectSensorManager="{Binding KinectSensorManager}" Visibility="Hidden"/>
 			<WpfViewers:KinectSkeletonViewer KinectSensorManager="{Binding KinectSensorManager}"/>
 		</Grid>
 
@@ -80,10 +79,6 @@
 				<TextBlock Text="Near mode" Margin="3" VerticalAlignment="Center" Grid.Row="2"/>
 				<CheckBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
 						  IsChecked="{Binding KinectSensorManager.SkeletonEnableTrackingInNearMode}"/>
-
-				<TextBlock Text="Camera" Margin="3" VerticalAlignment="Center" Grid.Row="3"/>
-				<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-						  x:Name="cameraCheckBox" Checked="CameraCheckBox_OnChecked" Unchecked="CameraCheckBox_OnUnchecked" />
 
 				<TextBlock Text="User brightness" Margin="3" VerticalAlignment="Center" Grid.Row="4"/>
 				<Slider Orientation="Horizontal" Grid.Column="1" Margin="3" Grid.Row="4"
