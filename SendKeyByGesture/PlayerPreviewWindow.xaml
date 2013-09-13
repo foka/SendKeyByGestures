@@ -5,7 +5,9 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:SendKeyByGesture="clr-namespace:SendKeyByGesture"
-        xmlns:Converters="clr-namespace:SendKeyByGesture.Converters" Title="PlayerPreviewWindow"
+        xmlns:Converters="clr-namespace:SendKeyByGesture.Converters"
+        xmlns:WpfViewers="clr-namespace:Microsoft.Samples.Kinect.WpfViewers;assembly=Microsoft.Samples.Kinect.WpfViewers"
+        Title="PlayerPreviewWindow"
 		Height="225" Width="300"
 		Background="Transparent" mc:Ignorable="d"
 		Opacity="{Binding Opacity}">
@@ -20,9 +22,12 @@
 		</ResourceDictionary>
 	</Window.Resources>
 
-	<k:KinectRegion KinectSensor="{Binding KinectSensorChooser.Kinect}"
-					IsCursorVisible="False">
-		<k:KinectUserViewer UserColoringMode="Manual"
-							DefaultUserColor="{Binding Brightness, Converter={StaticResource PercentageBrightnessToGreyscaleColorConverter}}" />
-	</k:KinectRegion>
+	<Grid>
+		<k:KinectRegion KinectSensor="{Binding KinectSensorChooser.Kinect}"
+						IsCursorVisible="False">
+			<k:KinectUserViewer UserColoringMode="Manual"
+								DefaultUserColor="{Binding Brightness, Converter={StaticResource PercentageBrightnessToGreyscaleColorConverter}}" />
+		</k:KinectRegion>
+		<WpfViewers:KinectSkeletonViewer KinectSensorManager="{Binding KinectSensorManager}"/>
+	</Grid>
 </Window>

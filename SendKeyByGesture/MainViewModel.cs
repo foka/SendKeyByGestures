@@ -16,11 +16,12 @@ namespace SendKeyByGesture
 	{
 		public MainViewModel(KinectSensorChooser kinectSensorChooser,
 			PlayerPreviewViewModel playerPreviewViewModel,
-			GestureWithKeyViewModel[] gestureWithKeyCollection)
+			GestureWithKeyViewModel[] gestureWithKeyCollection,
+			KinectSensorManager kinectSensorManager)
 		{
 			KinectSensorChooser = kinectSensorChooser;
 			PlayerPreviewViewModel = playerPreviewViewModel;
-			KinectSensorManager = new KinectSensorManager();
+			KinectSensorManager = kinectSensorManager;
 			gestureControllers = new Dictionary<int, GestureController>();
 
 			GestureWithKeyCollection = gestureWithKeyCollection;

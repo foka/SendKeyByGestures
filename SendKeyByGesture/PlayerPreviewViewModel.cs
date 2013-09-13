@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Microsoft.Kinect.Toolkit;
+using Microsoft.Samples.Kinect.WpfViewers;
 
 namespace SendKeyByGesture
 {
@@ -12,13 +13,15 @@ namespace SendKeyByGesture
 		private const decimal OpacityMax = 1m;
 
 
-		public PlayerPreviewViewModel(KinectSensorChooser kinectSensorChooser)
+		public PlayerPreviewViewModel(KinectSensorChooser kinectSensorChooser, KinectSensorManager kinectSensorManager)
 		{
 			KinectSensorChooser = kinectSensorChooser;
+			KinectSensorManager = kinectSensorManager;
 		}
 
 
-		public KinectSensorChooser KinectSensorChooser { get; set; }
+		public KinectSensorChooser KinectSensorChooser { get; private set; }
+		public KinectSensorManager KinectSensorManager { get; private set; }
 
 		/// <summary>
 		/// Gets the user opacity (0.0 = transparent, 1.0 = opaque).

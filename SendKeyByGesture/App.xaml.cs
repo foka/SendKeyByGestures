@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Kinect.Toolkit;
+using Microsoft.Samples.Kinect.WpfViewers;
 using SendKeyByGesture.Gestures;
 using Application = System.Windows.Application;
 
@@ -29,10 +30,13 @@ namespace SendKeyByGesture
 		private void App_OnStartup(object sender, StartupEventArgs e)
 		{
 			var kinectSensorChooser = new KinectSensorChooser();
+			var kinectSensorManager = new KinectSensorManager();
+
 			var gesturesWithKeys = GesturesRegistry.CreateGesturesWithKeys();
 
-			var playerPreviewViewModel = new PlayerPreviewViewModel(kinectSensorChooser);
-			var mainWindowViewModel = new MainViewModel(kinectSensorChooser, playerPreviewViewModel, gesturesWithKeys);
+			var playerPreviewViewModel = new PlayerPreviewViewModel(kinectSensorChooser, kinectSensorManager);
+			var mainWindowViewModel = new MainViewModel(kinectSensorChooser, playerPreviewViewModel,
+				gesturesWithKeys, kinectSensorManager);
 			mainWindow = new MainWindow(mainWindowViewModel);
 
 			playerWindow = new PlayerPreviewWindow (playerPreviewViewModel)
